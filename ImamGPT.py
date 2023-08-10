@@ -12,7 +12,7 @@ import textract
 from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 
 
-class Pastor:
+class Imam:
     def __init__(self, pdf_file="quran.pdf", txt_file="quran.txt", db_name="quran.pkl"):
         load_dotenv()
         self.pdf_file = pdf_file
@@ -56,7 +56,7 @@ class Pastor:
         with open(self.txt_file, "r") as f:
             text = f.read()
 
-        text_splitter = CharacterTextSplitter(chunk_size=1250, separator="\n")
+        text_splitter = CharacterTextSplitter(chunk_size=1250, separator="\n\n")
         chunks = []
         splits = text_splitter.split_text(text)
         chunks.extend(splits)
@@ -87,5 +87,5 @@ class Pastor:
         return result["answer"]
 
 
-p = Pastor()
+p = Imam()
 p.run()
