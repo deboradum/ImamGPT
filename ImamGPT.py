@@ -15,6 +15,10 @@ from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 class Imam:
     def __init__(self, pdf_file="quran.pdf", txt_file="quran.txt", db_name="quran.pkl"):
         load_dotenv()
+        # Checks for openAI API key.
+        if os.environ.get('OPENAI_API_KEY') is None:
+            print("Please provide a valid OpenAI API key in the .env file. See .env.example for more information")
+            exit(1)
         self.pdf_file = pdf_file
         self.txt_file = txt_file
         self.db_name = db_name
